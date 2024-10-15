@@ -1,0 +1,1 @@
+https://github.com/encog/encog-java-core/commit/41050a1d82a1f588f76d9666fa45686d325182b1
