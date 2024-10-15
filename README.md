@@ -1,9 +1,16 @@
 
 # Bug Classifier & Gumtree
 
-### Short description
-This project tries to find different types of bugs within a project with input in the form of link.
-Bugs will be identified for Code, Test and Build for the same.
+We have collected program and test bugs from the BUGSWARM dataset and use this data to train machine learning models capable of accurately classifying bugs into their respective categories. This project is divided into three main parts:
+
+#### Bugs Discovery
+In this phase, we collect build reports from BUGSWARM and extract the buggy commits that caused the build failures.
+
+#### Data Processing
+Once the buggy commits are identified, we extract their parent (pre-buggy) commits and compare both versions to generate the AST (Abstract Syntax Tree) for the differential code changes.
+
+#### Bug Classifier
+Using the insights derived from the AST reports, we train machine learning models and evaluate their effectiveness in classifying bugs as either program bugs or test bugs.
 
 ## Pre-Requisites
 #### Bug Classifier
@@ -47,17 +54,22 @@ You will have a zip distribution of GumTree in the dist/build/distributions fold
 
 Also, if you want this binary path to be avilable irrespective of the current working directory please set it to PATH environmanet variable for Linux or Windows
 
-## Run the project:
-#### Bug Classifier
+## How to execute the project:
+#### Data Discovery
+- Execute the Extract_CommitLinks_From_ExportLog.py with appropriate path in the script where the json files from Bugswarm are copied
+
+#### Data Proceessing
 -   python DifferenceFinder.py <id> <filepath having links>
     Example1: python DifferenceFinder.py 1 Commit_Links/code.txt
     Example2: python DifferenceFinder.py 2 Commit_Links/test.txt
-    Example3: python DifferenceFinder.py 3 Commit_Links/build.txt
 
-#### Gumtree
--   python main.py <source java filepath> <target java filepath>
-    Example: python main.py source.java path target.java path
+
+    ##### Gumtree
+    -   python main.py <source java filepath> <target java filepath>
+        Example: python main.py source.java path target.java path
  
  
+#### Bug Classifier
+- Execute the svm_10_avg_90_10.py and svm_N-1.py with appropriate path in the script where the AST files from Data processing are copied
 
 
